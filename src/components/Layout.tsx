@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Field, Life } from '../Life';
 
 const SIZE = 100;
+const TIMEOUT = 300;
 
 const life = new Life({
   size: SIZE
@@ -13,9 +14,9 @@ const Layout = () => {
 
   useEffect(() => {
     setInterval(() => {
-      setField(life.getRecalculatedField());
+      setField((previousField) => life.getRecalculatedField(previousField));
       setGeneration((generation) => generation + 1);
-    }, 5000);
+    }, TIMEOUT);
   }, []);
 
   return (

@@ -19,8 +19,8 @@ export class Life {
     return this.field;
   }
 
-  protected getPointState(pointIndex: number): boolean {
-    return this.field[pointIndex];
+  protected getPointState(pointIndex: number, field: Field): boolean {
+    return field[pointIndex];
   }
 
   protected getPointRow(pointIndex: number): number {
@@ -40,7 +40,7 @@ export class Life {
     return (row * this.size) + col;
   }
 
-  protected getPointNeighborsNumber(pointIndex: number): number {
+  protected getPointNeighborsNumber(pointIndex: number, field: Field): number {
     let neighborsNumber = 0;
 
     const pointRow = this.getPointRow(pointIndex);
@@ -56,7 +56,7 @@ export class Life {
         const neighborCol = pointRow + col;
 
         if (this.isInBound(neighborRow, neighborCol)) {
-          if (this.getPointState(this.getPointIndex(neighborRow, neighborCol))) {
+          if (this.getPointState(this.getPointIndex(neighborRow, neighborCol), field)) {
             neighborsNumber++;
           }
         }
@@ -66,12 +66,23 @@ export class Life {
     return neighborsNumber;
   }
 
-  public getRecalculatedField(): Field {
-    this.field = this.field.map((_, index) => {
-      const neighborsNumber = this.getPointNeighborsNumber(index);
-      return neighborsNumber > 1 && neighborsNumber < 4;
+  public getRecalculatedField(previousField: Field): Field {
+    const newField: Field = previousField.map((currentState, pointIndex) => {
+      const neighborsNumber = this.getPointNeighborsNumber(pointIndex, previousField);
+
+      if (neighborsNumber < 2 || neighborsNumber > 3) {
+        return false;
+      }
+
+      if (neighborsNumber === 3) {
+        return true;
+      }
+
+      return currentState;
     });
 
-    return this.field;
+    this.field = newField;
+
+    return newField;
   }
 }

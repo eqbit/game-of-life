@@ -1,1 +1,1 @@
-export const getRandomChance = () => Math.random() > 0.95;
+export const getRandomChance = () => Math.random() > 0.9;

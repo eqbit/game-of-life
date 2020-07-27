@@ -7,6 +7,7 @@ To run the simulation:
 
 ### todos:
 
+- fix logic
 - a button to clear the field
 - a button to play / pause the simulation
 - possibility to toggle a point with mouse click
