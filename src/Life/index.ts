@@ -24,6 +24,11 @@ export class Life {
     return this.field;
   }
 
+  public getNewEmptyField(): Field {
+    this.field = new Array(this.size * this.size).fill(false);
+    return this.field;
+  }
+
   protected getPointState(pointIndex: number, field: Field): boolean {
     return field[pointIndex];
   }

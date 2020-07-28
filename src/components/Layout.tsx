@@ -31,6 +31,11 @@ const Layout = () => {
     setGeneration(0);
   };
 
+  const clear = () => {
+    setField(life.getNewEmptyField());
+    setGeneration(0);
+  };
+
   const toggle = () => {
     if (intervalId) {
       stop();
@@ -54,6 +59,13 @@ const Layout = () => {
           onClick={() => reset()}
         >
           Сбросить
+        </button>
+
+        <button
+          className="btn"
+          onClick={() => clear()}
+        >
+          Очистить
         </button>
       </div>
 
