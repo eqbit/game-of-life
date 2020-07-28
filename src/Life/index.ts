@@ -46,17 +46,20 @@ export class Life {
     const pointRow = this.getPointRow(pointIndex);
     const pointCol = this.getPointCol(pointIndex);
 
-    for (let row = -1; row <= 1; row++) {
-      for (let col = -1; col <= 1; col++) {
+    for (let row = -1; row < 2; row++) {
+      for (let col = -1; col < 2; col++) {
         if (row === 0 && col === 0) {
           continue;
         }
 
-        const neighborRow = pointCol + row;
-        const neighborCol = pointRow + col;
+        const neighborRow = pointRow + row;
+        const neighborCol = pointCol + col;
 
         if (this.isInBound(neighborRow, neighborCol)) {
-          if (this.getPointState(this.getPointIndex(neighborRow, neighborCol), field)) {
+          const neighborPointIndex = this.getPointIndex(neighborRow, neighborCol);
+          const isNeighborAlive = this.getPointState(neighborPointIndex, field);
+
+          if (isNeighborAlive) {
             neighborsNumber++;
           }
         }
