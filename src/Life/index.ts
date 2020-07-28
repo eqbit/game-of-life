@@ -19,6 +19,11 @@ export class Life {
     return this.field;
   }
 
+  public getNewRandomizedField(): Field {
+    this.field = new Array(this.size * this.size).fill(null).map(() => getRandomChance());
+    return this.field;
+  }
+
   protected getPointState(pointIndex: number, field: Field): boolean {
     return field[pointIndex];
   }

@@ -47,3 +47,20 @@ html, body {
   color: #FFF;
   margin: 10px 0;
 }
+
+.btn {
+  border: none;
+  margin: 10px 0;
+  background: #FFF;
+  padding: 5px 20px;
+  cursor: pointer;
+  min-width: 80px;
+
+  & + & {
+    margin-left: 10px;
+  }
+
+  &:hover {
+    background: lightgray;
+  }
+}
