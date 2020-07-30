@@ -15,7 +15,7 @@ const Layout = () => {
 
   const start = () => {
     const localInterval = setInterval(() => {
-      setField((previousField) => life.getRecalculatedField(previousField));
+      setField((previousField) => [...life.getRecalculatedField(previousField)]);
       setGeneration((generation) => generation + 1);
     }, step);
 
@@ -28,12 +28,12 @@ const Layout = () => {
   };
 
   const reset = () => {
-    setField(life.getNewRandomizedField());
+    setField([...life.getNewRandomizedField()]);
     setGeneration(0);
   };
 
   const clear = () => {
-    setField(life.getNewEmptyField());
+    setField([ ...life.getNewEmptyField()]);
     setGeneration(0);
   };
 
@@ -45,6 +45,10 @@ const Layout = () => {
     }
   };
 
+  const togglePoint = (index: number) => {
+    setField([...life.togglePoint(index)]);
+  };
+
   return (
     <View
       reset={reset}
@@ -54,6 +58,7 @@ const Layout = () => {
       intervalId={intervalId}
       field={field}
       generation={generation}
+      togglePoint={togglePoint}
     />
   );
 };

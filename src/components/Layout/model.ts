@@ -8,4 +8,5 @@ export interface ViewModel {
   intervalId?: NodeJS.Timeout;
   field: Field;
   generation: number;
+  togglePoint: (index: number) => void;
 }

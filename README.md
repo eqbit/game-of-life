@@ -7,5 +7,4 @@ To run the simulation:
 
 ### todos:
 
-- possibility to toggle a point with mouse click
-- ability to add a point during runtime
+- develop new simulation rules

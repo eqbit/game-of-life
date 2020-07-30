@@ -9,7 +9,8 @@ const View: React.FC<ViewModel> = (
     size,
     intervalId,
     field,
-    generation
+    generation,
+    togglePoint
   }
 ) => {
   return (
@@ -45,9 +46,10 @@ const View: React.FC<ViewModel> = (
       >
         {field?.map((pointState, index) => {
           return (
-            <div
+            <button
               className={`square ${pointState ? 'square--alive' : 'square--dead'}`}
               key={`square-${index}`}
+              onClick={() => togglePoint(index)}
             />
           )
         })}

@@ -79,6 +79,11 @@ export class Life {
     return neighborsNumber;
   }
 
+  public togglePoint(index: number): Field {
+    this.field[index] = !this.field[index];
+    return this.field;
+  }
+
   public getRecalculatedField(previousField: Field): Field {
     const newField: Field = previousField.map((currentState, pointIndex) => {
       const neighborsNumber = this.getPointNeighborsNumber(pointIndex, previousField);
