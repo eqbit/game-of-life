@@ -43,12 +43,22 @@ html, body {
 
   &--alive {
     background: #FFF;
-    color: #333;
+  }
+
+  &--weak {
+    background: #FFF;
+  }
+
+  &--normal {
+    background: green;
+  }
+
+  &--aggressive {
+    background: #8c1400;
   }
 
   &--dead {
     background: #000;
-    color: #FFF;
   }
 
   &:hover {

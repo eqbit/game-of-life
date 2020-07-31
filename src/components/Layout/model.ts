@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field } from '../../services/Life';
+import { FieldExtended } from '../../services/LifeExtended';
 
 export interface ViewModel {
   reset: () => void;
@@ -7,7 +8,7 @@ export interface ViewModel {
   toggle: () => void;
   size: number;
   intervalId?: NodeJS.Timeout;
-  field: Field;
+  field: FieldExtended;
   generation: number;
   togglePoint: (index: number) => void;
   chance: number;

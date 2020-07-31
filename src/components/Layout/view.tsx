@@ -1,6 +1,7 @@
 import React from 'react';
 import { ViewModel } from './model';
 import TextInput from '../ui/inputs/TextInput';
+import { FieldExtended, FieldExtendedUnion } from '../../services/LifeExtended';
 
 const View: React.FC<ViewModel> = (
   {
@@ -16,6 +17,22 @@ const View: React.FC<ViewModel> = (
     setChance
   }
 ) => {
+  const getPointClass = (lives: FieldExtendedUnion) => {
+    if (!lives) {
+      return 'dead';
+    }
+
+    if (lives === 1) {
+      return 'weak';
+    }
+
+    if (lives === 2) {
+      return 'normal';
+    }
+
+    return 'aggressive';
+  };
+
   return (
     <div className="wrapper">
       <div className="buttons">
@@ -54,7 +71,7 @@ const View: React.FC<ViewModel> = (
         {field?.map((pointState, index) => {
           return (
             <button
-              className={`square ${pointState ? 'square--alive' : 'square--dead'}`}
+              className={`square square--${getPointClass(pointState)}`}
               key={`square-${index}`}
               onClick={() => togglePoint(index)}
             />
