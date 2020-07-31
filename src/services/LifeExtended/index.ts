@@ -75,7 +75,7 @@ export class LifeExtended {
           }
 
           if (neighborUnitValue === 2) {
-            neighborsValue += 50;
+            neighborsValue += 20;
           }
 
           if (neighborUnitValue === 3) {
