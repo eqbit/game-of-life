@@ -1,7 +1,7 @@
 import React from 'react';
 import { ViewModel } from './model';
 import TextInput from '../ui/inputs/TextInput';
-import { FieldExtended, FieldExtendedUnion } from '../../services/LifeExtended';
+import { FieldExtendedUnion } from '../../services/LifeExtended';
 
 const View: React.FC<ViewModel> = (
   {

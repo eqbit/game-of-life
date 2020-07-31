@@ -16,7 +16,7 @@ const Layout = () => {
 
   const start = () => {
     const localInterval = setInterval(() => {
-      setField((previousField) => [...life.getRecalculatedField(previousField)]);
+      setField([...life.getRecalculatedField()]);
       setGeneration((generation) => generation + 1);
     }, step);
 

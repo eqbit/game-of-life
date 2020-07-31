@@ -30,8 +30,8 @@ export class LifeExtended {
     return this.Field;
   }
 
-  protected getPointState(pointIndex: number, FieldExtended: FieldExtended): number {
-    return FieldExtended[pointIndex];
+  protected getPointState(pointIndex: number): number {
+    return this.Field[pointIndex];
   }
 
   protected getPointRow(pointIndex: number): number {
@@ -51,8 +51,8 @@ export class LifeExtended {
     return (row * this.size) + col;
   }
 
-  protected getPointNeighborsNumber(pointIndex: number, FieldExtended: FieldExtended): number {
-    let neighborsNumber = 0;
+  protected getPointNeighborsValue(pointIndex: number): number {
+    let neighborsValue = 0;
 
     const pointRow = this.getPointRow(pointIndex);
     const pointCol = this.getPointCol(pointIndex);
@@ -68,20 +68,28 @@ export class LifeExtended {
 
         if (this.isInBound(neighborRow, neighborCol)) {
           const neighborPointIndex = this.getPointIndex(neighborRow, neighborCol);
-          const isNeighborAlive = this.getPointState(neighborPointIndex, FieldExtended);
+          const neighborUnitValue = this.getPointState(neighborPointIndex);
 
-          if (isNeighborAlive) {
-            neighborsNumber++;
+          if (neighborUnitValue === 1) {
+            neighborsValue += 10;
+          }
+
+          if (neighborUnitValue === 2) {
+            neighborsValue += 50;
+          }
+
+          if (neighborUnitValue === 3) {
+            neighborsValue += 100;
           }
         }
       }
     }
 
-    return neighborsNumber;
+    return neighborsValue;
   }
 
   public togglePoint(index: number): FieldExtended {
-    let pointState: FieldExtendedUnion = this.Field[index] + 1 as FieldExtendedUnion;
+    let pointState = this.Field[index] + 1;
 
     if (pointState > 3) {
       pointState = 0;
@@ -92,19 +100,79 @@ export class LifeExtended {
     return this.Field;
   }
 
-  public getRecalculatedField(previousFieldExtended: FieldExtended = this.Field): FieldExtended {
-    const newFieldExtended = previousFieldExtended.map((currentState, pointIndex) => {
-      const neighborsNumber = this.getPointNeighborsNumber(pointIndex, previousFieldExtended);
+  protected handleDeadUnit(neighborsValue: number): FieldExtendedUnion {
+    if (!neighborsValue) {
+      return 0;
+    }
 
-      if (neighborsNumber < 2 || neighborsNumber > 3) {
-        return currentState - 1 < 0 ? 0 : currentState - 1;
+    if (neighborsValue >= 200) {
+      return 0;
+    }
+
+    return 1;
+  }
+
+  protected handleWeakUnit(neighborsValue: number): FieldExtendedUnion {
+    if (!neighborsValue) {
+      return 1;
+    }
+
+    if (neighborsValue >= 200) {
+      return 0;
+    }
+
+    return 2;
+  }
+
+  protected handleNormalUnit(neighborsValue: number): FieldExtendedUnion {
+    if (!neighborsValue) {
+      return 1;
+    }
+
+    if (neighborsValue >= 300) {
+      return 1;
+    }
+
+    if (neighborsValue > 100) {
+      return 2;
+    }
+
+    return 1;
+  }
+
+  protected handleAggressiveUnit(neighborsValue: number): FieldExtendedUnion {
+    if (!neighborsValue) {
+      return 2;
+    }
+
+    if (neighborsValue >= 300) {
+      return 2;
+    }
+
+    if (neighborsValue > 20) {
+      return 3;
+    }
+
+    return 2;
+  }
+
+  public getRecalculatedField(): FieldExtended {
+    const newFieldExtended = this.Field.map((currentState, pointIndex) => {
+      const neighborsValue = this.getPointNeighborsValue(pointIndex);
+
+      if (currentState === 0) {
+        return this.handleDeadUnit(neighborsValue);
       }
 
-      if (neighborsNumber === 3) {
-        return currentState + 1;
+      if (currentState === 1) {
+        return this.handleWeakUnit(neighborsValue);
       }
 
-      return currentState;
+      if (currentState === 2) {
+        return this.handleNormalUnit(neighborsValue);
+      }
+
+      return this.handleAggressiveUnit(neighborsValue);
     }) as FieldExtended;
 
     this.Field = newFieldExtended;
