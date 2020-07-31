@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field } from '../../Life';
+import { Field } from '../../services/Life';
 
 export interface ViewModel {
   reset: () => void;

@@ -1,4 +1,4 @@
-import { getRandomChance } from '../utils/random';
+import { getRandomChance } from '../../utils/random';
 
 interface ConstructorOptions {
   size: number;

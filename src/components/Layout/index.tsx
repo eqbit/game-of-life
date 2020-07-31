@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Field, Life } from '../../Life';
+import { Field, Life } from '../../services/Life';
 import View from './view';
 
 const Layout = () => {
