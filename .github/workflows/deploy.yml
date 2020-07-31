@@ -14,8 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Run a one-line script
+    - name: Installing dependencies
       run: yarn
 
-    - name: Run a multi-line script
+    - name: Run tests
       run: yarn test
