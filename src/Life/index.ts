@@ -85,7 +85,7 @@ export class Life {
     return this.field;
   }
 
-  public getRecalculatedField(previousField: Field): Field {
+  public getRecalculatedField(previousField: Field = this.field): Field {
     const newField: Field = previousField.map((currentState, pointIndex) => {
       const neighborsNumber = this.getPointNeighborsNumber(pointIndex, previousField);
 
