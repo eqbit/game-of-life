@@ -4,6 +4,7 @@ import View from './view';
 
 const Layout = () => {
   const [ size ] = useState(50);
+  const [ randomChancePercent ] = useState(80);
   const { current: life } = useRef(new Life({
     size
   }));
@@ -28,7 +29,7 @@ const Layout = () => {
   };
 
   const reset = () => {
-    setField([...life.getNewRandomizedField()]);
+    setField([...life.getNewRandomizedField(randomChancePercent)]);
     setGeneration(0);
   };
 

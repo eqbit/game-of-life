@@ -19,8 +19,8 @@ export class Life {
     return this.field;
   }
 
-  public getNewRandomizedField(): Field {
-    this.field = new Array(this.size * this.size).fill(null).map(() => getRandomChance());
+  public getNewRandomizedField(percent?: number): Field {
+    this.field = new Array(this.size * this.size).fill(null).map(() => getRandomChance(percent));
     return this.field;
   }
 

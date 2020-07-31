@@ -27,7 +27,7 @@ const View: React.FC<ViewModel> = (
           className="btn"
           onClick={() => reset()}
         >
-          Сбросить
+          Рандомно
         </button>
 
         <button
