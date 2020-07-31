@@ -58,9 +58,9 @@ const View: React.FC<ViewModel> = (
         </button>
       </div>
 
-      <div className="inputs">
-        <TextInput value={`${chance}`} onChange={setChance} id="chance-input" label="Шанс"/>
-      </div>
+      {/*<div className="inputs">*/}
+      {/*  <TextInput value={`${chance}`} onChange={setChance} id="chance-input" label="Шанс"/>*/}
+      {/*</div>*/}
 
       <div className="app"
            style={{

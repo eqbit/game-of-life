@@ -26,7 +26,7 @@ export class LifeExtended {
   }
 
   public getNewEmptyField(): FieldExtended {
-    this.Field = new Array(this.size * this.size).fill(false);
+    this.Field = new Array(this.size * this.size).fill(0);
     return this.Field;
   }
 
@@ -105,11 +105,15 @@ export class LifeExtended {
       return 0;
     }
 
-    if (neighborsValue >= 200) {
+    if (neighborsValue >= 100) {
       return 0;
     }
 
-    return 1;
+    if (neighborsValue >= 20) {
+      return 0;
+    }
+
+    return 0;
   }
 
   protected handleWeakUnit(neighborsValue: number): FieldExtendedUnion {
@@ -117,7 +121,7 @@ export class LifeExtended {
       return 1;
     }
 
-    if (neighborsValue >= 200) {
+    if (neighborsValue >= 100) {
       return 0;
     }
 
@@ -129,12 +133,8 @@ export class LifeExtended {
       return 1;
     }
 
-    if (neighborsValue >= 300) {
+    if (neighborsValue >= 100) {
       return 1;
-    }
-
-    if (neighborsValue > 100) {
-      return 2;
     }
 
     return 1;
