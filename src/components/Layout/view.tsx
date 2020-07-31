@@ -1,5 +1,6 @@
 import React from 'react';
 import { ViewModel } from './model';
+import TextInput from '../ui/inputs/TextInput';
 
 const View: React.FC<ViewModel> = (
   {
@@ -10,7 +11,9 @@ const View: React.FC<ViewModel> = (
     intervalId,
     field,
     generation,
-    togglePoint
+    togglePoint,
+    chance,
+    setChance
   }
 ) => {
   return (
@@ -36,6 +39,10 @@ const View: React.FC<ViewModel> = (
         >
           Очистить
         </button>
+      </div>
+
+      <div className="inputs">
+        <TextInput value={`${chance}`} onChange={setChance} id="chance-input" label="Шанс"/>
       </div>
 
       <div className="app"

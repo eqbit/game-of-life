@@ -4,9 +4,10 @@ import View from './view';
 
 const Layout = () => {
   const [ size ] = useState(50);
-  const [ randomChancePercent ] = useState(80);
+  const [ randomChancePercent, setRandomChancePercent ] = useState(10);
   const { current: life } = useRef(new Life({
-    size
+    size,
+    percent: randomChancePercent
   }));
   const [ field, setField ] = useState<Field>(life.getInitialField());
   const [ step ] = useState(300);
@@ -50,6 +51,24 @@ const Layout = () => {
     setField([...life.togglePoint(index)]);
   };
 
+  const setChance = (e: React.SyntheticEvent<HTMLInputElement>) => {
+    let val = +e.currentTarget.value;
+
+    if (isNaN(val)) {
+      val = 0;
+    }
+
+    if (val < 0) {
+      val = 0;
+    }
+
+    if (val > 100) {
+      val = 100;
+    }
+
+    setRandomChancePercent(val);
+  };
+
   return (
     <View
       reset={reset}
@@ -60,6 +79,8 @@ const Layout = () => {
       field={field}
       generation={generation}
       togglePoint={togglePoint}
+      chance={randomChancePercent}
+      setChance={setChance}
     />
   );
 };

@@ -2,6 +2,7 @@ import { getRandomChance } from '../utils/random';
 
 interface ConstructorOptions {
   size: number;
+  percent?: number;
 }
 
 export type Field = boolean[];
@@ -10,9 +11,9 @@ export class Life {
   protected size: number;
   protected field: Field;
 
-  constructor({ size }: ConstructorOptions) {
+  constructor({ size, percent }: ConstructorOptions) {
     this.size = size;
-    this.field = new Array(size * size).fill(null).map(() => getRandomChance());
+    this.field = new Array(size * size).fill(null).map(() => getRandomChance(percent));
   }
 
   public getInitialField(): Field {

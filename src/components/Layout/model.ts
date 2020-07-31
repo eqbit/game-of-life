@@ -1,3 +1,4 @@
+import React from 'react';
 import { Field } from '../../Life';
 
 export interface ViewModel {
@@ -9,4 +10,6 @@ export interface ViewModel {
   field: Field;
   generation: number;
   togglePoint: (index: number) => void;
+  chance: number;
+  setChance: (e: React.SyntheticEvent<HTMLInputElement>) => void;
 }
