@@ -1,14 +1,14 @@
 import React, { useRef, useState } from 'react';
-import { FieldExtended, LifeExtended } from '../../services/LifeExtended';
+import { Field, Life } from '../../services/Life';
 import View from './view';
 
 const Layout = () => {
   const [ size ] = useState(50);
   const [ randomChancePercent, setRandomChancePercent ] = useState(10);
-  const { current: life } = useRef(new LifeExtended({
+  const { current: life } = useRef(new Life({
     size
   }));
-  const [ field, setField ] = useState<FieldExtended>(life.getInitialField());
+  const [ field, setField ] = useState<Field>(life.getInitialField());
   const [ step ] = useState(300);
   const [ generation, setGeneration ] = useState(0);
 

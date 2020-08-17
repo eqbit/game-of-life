@@ -1,7 +1,5 @@
 import React from 'react';
 import { ViewModel } from './model';
-import TextInput from '../ui/inputs/TextInput';
-import { FieldExtendedUnion } from '../../services/LifeExtended';
 
 const View: React.FC<ViewModel> = (
   {
@@ -12,25 +10,15 @@ const View: React.FC<ViewModel> = (
     intervalId,
     field,
     generation,
-    togglePoint,
-    chance,
-    setChance
+    togglePoint
   }
 ) => {
-  const getPointClass = (lives: FieldExtendedUnion) => {
+  const getPointClass = (lives: boolean) => {
     if (!lives) {
       return 'dead';
     }
 
-    if (lives === 1) {
-      return 'weak';
-    }
-
-    if (lives === 2) {
-      return 'normal';
-    }
-
-    return 'aggressive';
+    return 'alive';
   };
 
   return (
@@ -57,10 +45,6 @@ const View: React.FC<ViewModel> = (
           Очистить
         </button>
       </div>
-
-      {/*<div className="inputs">*/}
-      {/*  <TextInput value={`${chance}`} onChange={setChance} id="chance-input" label="Шанс"/>*/}
-      {/*</div>*/}
 
       <div className="app"
            style={{
